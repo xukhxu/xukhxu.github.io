@@ -3,11 +3,14 @@ layout: default
 ---
 
 <style>
-.toggle { cursor: pointer; font-weight: bold; margin: 6px 0; user-select: none; }
+.toggle { cursor: pointer; margin: 6px 0; user-select: none; color: #159957; }
 .hidden { display: none; }
 .indent { margin-left: 20px; }
-.arrow { display: inline-block; transition: transform 0.2s ease; }
+.arrow { display: inline-block; transition: transform 0.2s ease; margin-right: 5px; }
 .arrow.open { transform: rotate(90deg); }
+
+.year-title { font-size: 1.4em; font-weight: bold; color: #1e6bb8; } /* 年份设大一点，蓝色 */
+.month-title { font-size: 1.1em; font-weight: bold; color: #606c71; } /* 月份设小一点，灰色 */
 </style>
 
 <script>
@@ -34,7 +37,7 @@ function toggle(id, arrowId) {
 {% assign year_id = "year-" | append: year.name %}
 {% assign year_arrow = "arrow-year-" | append: year.name %}
 
-<div class="toggle" onclick="toggle('{{ year_id }}', '{{ year_arrow }}')">
+<div class="toggle year-title" onclick="toggle('{{ year_id }}', '{{ year_arrow }}')">
   <span id="{{ year_arrow }}" class="arrow {% if year.name == current_year %}open{% endif %}">▶</span>
   {{ year.name }} 年
 </div>
@@ -46,9 +49,9 @@ function toggle(id, arrowId) {
   {% assign month_id = "month-" | append: month.name %}
   {% assign month_arrow = "arrow-month-" | append: month.name %}
 
-  <div class="toggle" onclick="toggle('{{ month_id }}', '{{ month_arrow }}')">
+  <div class="toggle month-title" onclick="toggle('{{ month_id }}', '{{ month_arrow }}')">
     <span id="{{ month_arrow }}" class="arrow {% if month.name == current_month %}open{% endif %}">▶</span>
-    {{ month.name | date: "%-m 月" }}
+    {{ month.name | append: "-01" | date: "%-m 月" }}
   </div>
 
   <ul id="{{ month_id }}" class="indent {% unless month.name == current_month %}hidden{% endunless %}">
