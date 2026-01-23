@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 克罗恩病特征与反流性食管炎治疗争议
+title: 克罗恩病是否会累及直肠和NERD
 date: 2026-01-23
 ---
 
